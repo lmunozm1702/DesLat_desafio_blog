@@ -1,5 +1,14 @@
 <form method="get" action="pages/create">
-    <input name="title">
-    <input name="image_url">
-    <textarea name="content"></textarea>
+    Title: <input name="title" >
+    Image URL: <input name="image_url">
+    Content: <textarea name="content"></textarea>
+    <input type="submit">
 </form>
+
+<% @posts.each do |post| %>
+    <%= post.title%>
+    <%= post.image_url%>
+    <%= post.content%>
+    <%= post.created_at%>
+    <br>
+<% end %>
