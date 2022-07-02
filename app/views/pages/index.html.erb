@@ -12,22 +12,18 @@ const agregar = (select_censored) => {
   //carga el select
   result.forEach(element => {
       const option = document.createElement('option');
-      const valor = element
-      option.value = valor;
-      option.text = valor.charAt(0).toUpperCase() + valor.slice(1).toLowerCase();
+      option.value = element;
+      option.text = element.charAt(0).toUpperCase() + element.slice(1).toLowerCase();
       select_censored.appendChild(option);
   });
-
 };
 </script>
-
-
 
 <form name="create_post" method="get" action="pages/create" id="create_post">
     Title: <input name="title" >
     Image URL: <input name="image_url">
     Content: <textarea name="content"></textarea>
-    Censored:<select name="censored" onClick="javascript:agregar(this);"></select>
+    Censored:<select name="censored" onFocus="javascript:agregar(this);"></select>
     <input type="submit">
 </form>
 

@@ -4,8 +4,10 @@ class PagesController < ApplicationController
   end
 
   def create
+    filtered = params[:content].gsub(params[:censored],"")
+
     @post = Post.create(title: params[:title], 
                         image_url: params[:image_url], 
-                        content: params[:content])
+                        content: filtered.gsub(/\s+/," ").strip)
   end
 end
