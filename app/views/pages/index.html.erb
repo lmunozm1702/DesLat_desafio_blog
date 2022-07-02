@@ -1,7 +1,33 @@
-<form method="get" action="pages/create">
+<script>
+
+const agregar = (select_censored) => {
+  const textarea = document.create_post.content.value.split(" ")
+  
+  select_censored.innerHTML= "";
+
+  //elimina duplicados
+  const dataArr = new Set(textarea);
+  let result = [...dataArr];
+
+  //carga el select
+  result.forEach(element => {
+      const option = document.createElement('option');
+      const valor = element
+      option.value = valor;
+      option.text = valor.charAt(0).toUpperCase() + valor.slice(1).toLowerCase();
+      select_censored.appendChild(option);
+  });
+
+};
+</script>
+
+
+
+<form name="create_post" method="get" action="pages/create" id="create_post">
     Title: <input name="title" >
     Image URL: <input name="image_url">
     Content: <textarea name="content"></textarea>
+    Censored:<select name="censored" onClick="javascript:agregar(this);"></select>
     <input type="submit">
 </form>
 
@@ -9,6 +35,6 @@
     <%= post.title%>
     <%= post.image_url%>
     <%= post.content%>
-    <%= post.created_at%>
+    <%= post.created_at.strftime("%d-%m-%Y %H:%M").in_time_zone("Santiago")%>
     <br>
 <% end %>

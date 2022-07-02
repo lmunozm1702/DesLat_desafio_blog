@@ -1,2 +1,16 @@
-<h1>Pages#create</h1>
-<p>Find me in app/views/pages/create.html.erb</p>
+<% if @post.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+            <%= pluralize(@post.errors.count, "error") %>
+                prohibited this post from being saved:
+        </h2>
+
+        <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% else %>
+    <h1>Te resistraste con éxito</h1>
+<% end %>
