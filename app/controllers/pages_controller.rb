@@ -4,7 +4,11 @@ class PagesController < ApplicationController
   end
 
   def create
-    filtered = params[:content].gsub(params[:censored],"")
+    if params[:censored] != nil
+      filtered = params[:content].gsub(params[:censored],"")
+    else
+      filtered = params[:content]
+    end
 
     @post = Post.create(title: params[:title], 
                         image_url: params[:image_url], 

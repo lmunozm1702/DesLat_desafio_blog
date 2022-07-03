@@ -1,16 +1,26 @@
 <% if @post.errors.any? %>
-    <div id="error_explanation">
-        <h2>
-            <%= pluralize(@post.errors.count, "error") %>
+    <div class="alert alert-danger mt-2" role="alert">
+        <h4 class="alert-heading">Ups!</h4>
+        </h2><%= pluralize(@post.errors.count, "error") %>
                 prohibited this post from being saved:
         </h2>
-
+        
         <ul>
             <% @post.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
         </ul>
+        <hr>
+        <p class="mb-0">Click <%= link_to "here", pages_index_path %> to try again.</p>
     </div>
 <% else %>
-    <h1>Te resistraste con éxito</h1>
+    <div class="alert alert-success mt-2" role="alert">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>You have successfully created a blog entry!</p>
+        <hr>
+        <p class="mb-0">Click <%= link_to "here", pages_index_path %> to create another one.</p>
+    </div>
+    
 <% end %>
+
+
