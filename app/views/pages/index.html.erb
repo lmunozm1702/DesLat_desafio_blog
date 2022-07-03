@@ -71,7 +71,7 @@ const agregar = (select_censored) => {
             <td><%= post.title%></td>
             <td><%= post.image_url%></td>
             <td><%= post.content%></td>
-            <td><%= post.created_at.strftime("%d-%m-%Y %H:%M").in_time_zone("Santiago")%></td>
+            <td><%= post.created_at.strftime("%d-%m-%Y %H:%M")%></td>
         </tr>
     <% end %>
 </table>
