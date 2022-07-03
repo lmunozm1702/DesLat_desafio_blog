@@ -18,19 +18,60 @@ const agregar = (select_censored) => {
   });
 };
 </script>
+     
+  
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Blog challenge</a> 
+    <form name="create_post" method="get" action="pages/create" id="create_post" class="d-flex" role="create">
+        <input name="title" 
+               class="form-control me-2" 
+               type="search" 
+               placeholder="Title*" 
+               aria-label="Title" required>
 
-<form name="create_post" method="get" action="pages/create" id="create_post">
-    Title: <input name="title" >
-    Image URL: <input name="image_url">
-    Content: <textarea name="content"></textarea>
-    Censored:<select name="censored" onFocus="javascript:agregar(this);"></select>
-    <input type="submit">
-</form>
+        <input name="image_url" 
+               class="form-control me-2" 
+               type="search" 
+               placeholder="Image URL*" 
+               aria-label="Image URL" required>
+        
+        <textarea name="content" 
+                  class="form-control me-2" 
+                  placeholder="Content*" 
+                  id="contentTextarea"
+                  aria-label="Content"
+                  rows="1" required></textarea>        
 
-<% @posts.each do |post| %>
-    <%= post.title%>
-    <%= post.image_url%>
-    <%= post.content%>
-    <%= post.created_at.strftime("%d-%m-%Y %H:%M").in_time_zone("Santiago")%>
-    <br>
-<% end %>
+        <select name="censored" 
+            class="form-select me-2" 
+            placeholder="Image URL" 
+            aria-label="Censored word" 
+            onFocus="javascript:agregar(this);">
+            <option selected disabled value="">Censored word...</option>
+           
+        </select>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+  </div>
+</nav>
+
+<table class="table mt-2">
+    <thead>
+        <tr class="table-primary">
+            <th>Title</th>
+            <th>Image URL</th>
+            <th>Content</th>
+            <th>Created at</th>
+        </tr>
+    </thead>
+
+    <% @posts.each do |post| %>
+        <tr>
+            <td><%= post.title%></td>
+            <td><%= post.image_url%></td>
+            <td><%= post.content%></td>
+            <td><%= post.created_at.strftime("%d-%m-%Y %H:%M").in_time_zone("Santiago")%></td>
+        </tr>
+    <% end %>
+</table>
